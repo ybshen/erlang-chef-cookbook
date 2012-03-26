@@ -19,9 +19,9 @@
 # limitations under the License.
 #
 
-case node[:platform]
+case node['platform']
 when "debian", "ubuntu"
-  erlpkg = node[:erlang][:gui_tools] ? "erlang" : "erlang-nox"
+  erlpkg = node['erlang']['gui_tools'] ? "erlang" : "erlang-nox"
   package erlpkg
   package "erlang-dev"
 when "redhat", "centos", "scientific"
@@ -31,7 +31,7 @@ when "redhat", "centos", "scientific"
     url "http://repos.fedorapeople.org/repos/peter/erlang/epel-5Server/$basearch"
     description "Updated erlang yum repository for RedHat / Centos 5.x - #{node['kernel']['machine']}"
     action :add
-    only_if { node[:platform_version].to_f >= 5.0 && node[:platform_version].to_f < 6.0 }
+    only_if { node['platform_version'].to_f >= 5.0 && node['platform_version'].to_f < 6.0 }
   end
   package "erlang"
 else
