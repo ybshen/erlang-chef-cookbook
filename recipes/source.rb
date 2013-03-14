@@ -53,4 +53,5 @@ remote_file File.join(Chef::Config[:file_cache_path], "otp_src_#{node['erlang'][
   mode 0644
   checksum node['erlang']['source']['checksum']
   notifies :run, "bash[install-erlang]", :immediately
+  action :create_if_missing
 end
